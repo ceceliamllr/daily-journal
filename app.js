@@ -37,6 +37,11 @@ app.get("/compose", function(req, res){
   res.render("compose");
 });
 
+app.get("delete", function(req,res){
+  res.render("delete");
+});
+
+
 app.post("/compose", function(req, res){
   const post = {
     title: req.body.postTitle,
@@ -47,6 +52,17 @@ app.post("/compose", function(req, res){
 
   res.redirect("/");
 
+});
+
+app.post("/delete", function(req, res){
+  const deleteId = req.body.button;
+
+  Post.findByIdAndRemove(deleteId, function(err){
+    if(!err){
+      console.log("yay");
+    }
+    res.redirect("/")
+  });
 });
 
 app.get("/posts/:postName", function(req, res){
