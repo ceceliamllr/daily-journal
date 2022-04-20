@@ -4,14 +4,15 @@
     <p> <%= startingContent %> </p>
 
 
-  <%  posts.forEach(function(post){ %>
+  <%  posts.forEach(function(post,index){ %>
 
     <h1><%=post.title%></h1>
     <div>
       <%=post.content.substring(0, 100) + " ..."%>
       <a href="/posts/<%=post.title%>">Read More</a>
       <form class="" action="/delete" method="post">
-        <button type="submit" name="button" value="<%= post._id %>" >Delete </button>
+        <input type="hidden" name="index" value="<%=index%>">
+        <input value="Delete" class="btn btn-primary" type="submit">
       </form>
     </div>
 
